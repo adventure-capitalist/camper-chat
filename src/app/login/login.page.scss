@@ -1,0 +1,17 @@
+ion-content {
+  --background: url("/assets/images/login-background.png") 40%;
+  text-align: center;
+}
+
+.login-description {
+  height: 60%;
+  line-height: 2em;
+}
+
+.login-description p {
+  color: #fff;
+}
+
+.login-button {
+  box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.18);
+}

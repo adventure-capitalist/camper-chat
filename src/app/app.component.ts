@@ -1,27 +1,36 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { Plugins } from "@capacitor/core";
+import { MenuController } from "@ionic/angular";
+import { AuthService } from "./services/auth.service";
+import { DataService } from "./services/data.service";
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+const { SplashScreen, StatusBar } = Plugins;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"]
 })
 export class AppComponent {
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private menu: MenuController,
+    private authService: AuthService,
+    private dataService: DataService
   ) {
-    this.initializeApp();
+    this.authService.init();
+    this.dataService.init();
+
+    SplashScreen.hide().catch(err => {
+      console.warn(err);
+    });
+
+    StatusBar.hide().catch(err => {
+      console.warn(err);
+    });
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+  async logout() {
+    await this.menu.close();
+    this.authService.logout();
   }
 }
