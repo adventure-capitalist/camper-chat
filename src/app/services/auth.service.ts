@@ -22,7 +22,7 @@ export class AuthService {
 
   init(): void {
     const firebaseConfig = {
-      apiKey: "AIzaSyBfpmvvHrDrnMCvDpTyUFejqXIkA1khi8k",
+      apiKey: "",
       authDomain: "camper-chatt.firebaseapp.com",
       databaseURL: "https://camper-chatt.firebaseio.com",
       projectId: "camper-chatt",
